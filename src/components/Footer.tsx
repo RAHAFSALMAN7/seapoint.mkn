@@ -15,7 +15,7 @@ export default function Footer({ t }: FooterProps) {
                     {/* LOGO + DESCRIPTION */}
                     <div className="md:col-span-2">
                         <img
-                            src="/untitled_design_(47).png"
+                            src="/Untitled-2.png"
                             alt="Sea Point Logo"
                             className="h-20 w-auto mb-6"
                         />

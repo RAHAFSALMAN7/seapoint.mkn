@@ -24,19 +24,7 @@ export const content = {
         'اضغط لبدء جولة افتراضية شاملة تمكنك من التجول في جميع أركان الفلة واستكشاف المساحات والتفاصيل بدقة عالية'
     },
 
-    virtualSeller: {
-      title: 'البائع الافتراضي من سي بوينت',
-      subtitle: 'خدمتك 24/7 — معلومات المشروع، الأسعار، والمواعيد',
-      label: 'البائع الافتراضي',
-      available: 'متاح الآن للإجابة على استفساراتك',
-      features: [
-        { title: 'يجاوب على كل الاستفسارات فوراً', description: 'احصل على إجابات دقيقة لكل أسئلتك حول المشروع في ثوانٍ معدودة' },
-        { title: 'يشرح تفاصيل الفلل', description: 'تعرف على جميع المواصفات والمساحات والخيارات المتاحة بشكل تفصيلي' },
-        { title: 'يحجز موعد زيارة', description: 'احجز موعدك لزيارة الموقع والفلة النموذجية بكل سهولة ويسر' },
-        { title: 'يقدّم تجربة تفاعلية حديثة', description: 'استمتع بتجربة مبتكرة وسهلة تجعل عملية الاستفسار والشراء أكثر متعة' }
-      ]
-    },
-
+     
     gallery: {
       title: 'معرض المشروع',
       subtitle: 'استعرض التصاميم الفاخرة والتفاصيل المعمارية لمشروع سي بوينت'
@@ -64,15 +52,18 @@ export const content = {
     },
 
     about: {
-      title: 'من نحن',
-      paragraphs: [
-        'سي بوينت للتطوير العقاري هي شركة رائدة في مجال التطوير العقاري بالمملكة العربية السعودية، نلتزم بتقديم مشاريع سكنية متميزة تجمع بين الجودة العالية والتصميم المعاصر الذي يلائم تطلعات العائلات السعودية.',
-        'منذ تأسيسنا، نسعى لخلق مجتمعات سكنية متكاملة توفر بيئة حياة مثالية من خلال تصاميم مبتكرة وخدمات استثنائية. نؤمن بأهمية الابتكار والاستدامة في كل مشروع نطوره، ونحرص على تطبيق أفضل الممارسات العالمية مع الحفاظ على الهوية المحلية.',
-        'فريقنا من الخبراء المتخصصين يعمل بشغف وإتقان لتحويل رؤيتنا إلى واقع ملموس يفوق توقعات عملائنا، لنصنع معاً مستقبلاً سكنياً أفضل يجمع بين الراحة والفخامة والابتكار.'
-      ],
-      experience: 'أكثر من 20 عاماً من الخبرة',
-      experienceDesc: 'في تطوير المشاريع السكنية الراقية'
-    },
+  title: 'من نحن',
+  paragraphs: [
+    'شركة مكن للتطوير العقاري هي إحدى الشركات الرائدة في قطاع التطوير العقاري بالمملكة العربية السعودية، وتتميز بتقديم مشاريع سكنية مبتكرة تجمع بين الجودة العالية والتصميم العصري الذي يلبي تطلعات العائلات السعودية. ويأتي مشروع سي بوينت كأحد أبرز مشاريعنا التي تعكس رؤيتنا في الارتقاء بمعايير السكن الحديث.',
+    
+    'منذ تأسيس شركة مكن، نعمل على بناء مجتمعات سكنية متكاملة توفر بيئة حياة مثالية من خلال حلول معمارية مبتكرة وخدمات استثنائية. نؤمن بأن التطوير العقاري هو صناعة مستقبل، لذلك نحرص على تطبيق أفضل الممارسات العالمية مع الحفاظ على الطابع المحلي وروح المكان.',
+    
+    'يضم فريق مكن نخبة من الخبراء والمتخصصين الذين يعملون بشغف وإتقان لتجسيد رؤيتنا وتحقيق التميز في كل مشروع. ومع مشروع سي بوينت، نسعى لتقديم تجربة سكنية راقية تجمع بين الراحة والفخامة والابتكار، وترتقي بتوقعات عملائنا نحو الأفضل.'
+  ],
+  experience: 'أكثر من 20 عاماً من الخبرة',
+  experienceDesc: 'في تطوير المشاريع السكنية الراقية'
+},
+
 
     cta: {
       title: 'جاهز لزيارة سي بوينت؟',
@@ -127,18 +118,7 @@ export const content = {
       description: 'Click to start a comprehensive virtual tour that allows you to walk through all corners of the villa and explore the spaces and details with high accuracy'
     },
 
-    virtualSeller: {
-      title: "Sea Point's Virtual Seller",
-      subtitle: 'At Your Service 24/7 — Project Information, Prices, and Appointments',
-      label: 'Virtual Seller',
-      available: 'Available now to answer your inquiries',
-      features: [
-        { title: 'Answers All Inquiries Instantly', description: 'Get accurate answers to all your questions about the project in seconds' },
-        { title: 'Explains Villa Details', description: 'Learn about all specifications, spaces, and available options in detail' },
-        { title: 'Books Visit Appointments', description: 'Book your appointment to visit the site and model villa with ease' },
-        { title: 'Provides Modern Interactive Experience', description: 'Enjoy an innovative and easy experience that makes inquiry and purchase more enjoyable' }
-      ]
-    },
+     
 
     gallery: {
       title: 'Project Gallery',
@@ -167,15 +147,18 @@ export const content = {
     },
 
     about: {
-      title: 'About Us',
-      paragraphs: [
-        'Sea Point Real Estate Development is a leading company in the Kingdom of Saudi Arabia.',
-        'We strive to create integrated residential communities through innovative designs and services.',
-        'Our expert team works passionately to deliver projects that exceed expectations.'
-      ],
-      experience: 'Over 20 Years of Experience',
-      experienceDesc: 'In developing upscale residential projects'
-    },
+  title: "About Us",
+  paragraphs: [
+    "MKN Real Estate Development is one of the leading companies in the Saudi real estate sector, distinguished by delivering innovative residential projects that combine high quality with contemporary design that meets the aspirations of modern Saudi families. Sea Point stands as one of our flagship projects, reflecting our vision to elevate the standards of modern living.",
+    
+    "Since the establishment of MKN, we have been committed to building integrated residential communities that provide an ideal living environment through innovative architectural solutions and exceptional services. We believe that real estate development is the creation of a future, which is why we apply global best practices while preserving the local identity and spirit of place.",
+    
+    "Our team at MKN consists of highly skilled experts who work with passion and precision to bring our vision to life and deliver excellence in every project. With Sea Point, we aim to offer a refined residential experience that blends comfort, luxury, and innovation—setting a new benchmark for upscale living."
+  ],
+  experience: "Over 20 Years of Experience",
+  experienceDesc: "In developing upscale residential projects"
+},
+
 
     cta: {
       title: 'Ready to Visit Sea Point?',

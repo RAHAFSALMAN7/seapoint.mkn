@@ -2,7 +2,6 @@
 import VideoSection from "./components/VideoSection";
 
 import Hero from "./components/Hero";
-import InteriorSection from "./components/InteriorSection";
 import VirtualTour from "./components/VirtualTour";
 import VirtualSeller from "./components/VirtualSeller";
 import Gallery from "./components/Gallery";
@@ -26,8 +25,7 @@ function App() {
       <Hero t={t} language={language} setLanguage={setLanguage} />
 
       {/* INTERIOR */}
-      <InteriorSection t={t} />
-
+ 
       {/* VIDEO SECTION */}
       <VideoSection t={t} />
 

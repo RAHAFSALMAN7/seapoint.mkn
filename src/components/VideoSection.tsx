@@ -5,28 +5,30 @@ interface VideoSectionProps {
 export default function VideoSection({ t }: VideoSectionProps) {
     return (
         <section className="py-32 bg-gradient-to-br from-[#f8f6f3] to-white relative overflow-hidden">
-            
+
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
 
                     {/* 🎥 الفيديو */}
                     <div className="relative group">
                         <div className="absolute -inset-4 bg-gradient-to-br from-[#D9C18E]/30 to-transparent rounded-3xl blur opacity-40 group-hover:opacity-60 transition duration-500" />
-                        
+
                         <video
                             src={`/${t.videoSection.video}`}
                             autoPlay
                             loop
                             muted
                             playsInline
-                            className="w-full h-[420px] object-cover rounded-3xl shadow-2xl relative z-10"
+                            className="w-full h-[520px] md:h-[600px] object-cover rounded-3xl shadow-2xl relative z-10"
                         />
                     </div>
 
                     {/* 📝 النص */}
                     <div className="space-y-6 animate-fade-in-right">
+
+                        {/* تغيير الاسم إلى Sea Point */}
                         <h3 className="text-xl font-bold text-[#003B4A]">
-                            {t.videoSection.title}
+                            Sea Point
                         </h3>
 
                         <p className="text-gray-600 text-2xl leading-relaxed">
