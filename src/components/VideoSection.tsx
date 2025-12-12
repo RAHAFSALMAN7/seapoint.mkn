@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 
 interface Video {
   src: string;
-  alt?: string;
 }
 
 interface SmartHomeSection {
@@ -74,7 +73,8 @@ export default function VideoSection({ t }: VideoSectionProps) {
 
   return (
     <>
-       <section className="py-32 bg-gradient-to-br from-[#f8f6f3] to-white relative overflow-hidden">
+      {/* الفيديو الرئيسي */}
+      <section className="py-32 bg-gradient-to-br from-[#f8f6f3] to-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative">
@@ -106,7 +106,8 @@ export default function VideoSection({ t }: VideoSectionProps) {
         </div>
       </section>
 
-       <section className="py-32 bg-gray-50 relative">
+      {/* كروسيل Smart Home */}
+      <section className="py-32 bg-gray-50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-[#003B4A] mb-4">{t.smartHomeSection.title}</h2>
           <p className="text-gray-600 mb-8">{t.smartHomeSection.description}</p>
@@ -122,7 +123,8 @@ export default function VideoSection({ t }: VideoSectionProps) {
               className="w-full h-full object-cover rounded-3xl shadow-xl"
             />
 
-             <button
+            {/* أزرار الأسهم */}
+            <button
               onClick={prevVideo}
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg z-20"
             >
@@ -144,7 +146,8 @@ export default function VideoSection({ t }: VideoSectionProps) {
             </button>
           </div>
 
-         </div>
+          {/* لا يوجد أي نص أسفل الفيديوهات */}
+        </div>
       </section>
     </>
   );
