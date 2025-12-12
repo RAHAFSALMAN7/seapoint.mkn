@@ -53,8 +53,8 @@ export default function VideoSection({ t }: VideoSectionProps) {
       const newIndex = prev === 0 ? carouselRefs.length - 1 : prev - 1;
       const vid = carouselRefs[newIndex].current;
       if (vid) {
-        vid.muted = carouselMuted[newIndex]; // يترك الحالة حسب muted الحالي
-        vid.play(); // يضمن تشغيل الفيديو
+        vid.muted = carouselMuted[newIndex];
+        vid.play();
       }
       return newIndex;
     });
@@ -65,8 +65,8 @@ export default function VideoSection({ t }: VideoSectionProps) {
       const newIndex = prev === carouselRefs.length - 1 ? 0 : prev + 1;
       const vid = carouselRefs[newIndex].current;
       if (vid) {
-        vid.muted = carouselMuted[newIndex]; // يترك الحالة حسب muted الحالي
-        vid.play(); // يضمن تشغيل الفيديو
+        vid.muted = carouselMuted[newIndex];
+        vid.play();
       }
       return newIndex;
     });
@@ -74,8 +74,7 @@ export default function VideoSection({ t }: VideoSectionProps) {
 
   return (
     <>
-      {/* الفيديو الرئيسي */}
-      <section className="py-32 bg-gradient-to-br from-[#f8f6f3] to-white relative overflow-hidden">
+       <section className="py-32 bg-gradient-to-br from-[#f8f6f3] to-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="relative">
@@ -107,8 +106,7 @@ export default function VideoSection({ t }: VideoSectionProps) {
         </div>
       </section>
 
-      {/* كروسيل Smart Home */}
-      <section className="py-32 bg-gray-50 relative">
+       <section className="py-32 bg-gray-50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-[#003B4A] mb-4">{t.smartHomeSection.title}</h2>
           <p className="text-gray-600 mb-8">{t.smartHomeSection.description}</p>
@@ -124,8 +122,7 @@ export default function VideoSection({ t }: VideoSectionProps) {
               className="w-full h-full object-cover rounded-3xl shadow-xl"
             />
 
-            {/* أزرار الأسهم */}
-            <button
+             <button
               onClick={prevVideo}
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg z-20"
             >
@@ -147,8 +144,7 @@ export default function VideoSection({ t }: VideoSectionProps) {
             </button>
           </div>
 
-          <p className="mt-4 text-gray-600">{t.smartHomeSection.videos[currentIndex].alt}</p>
-        </div>
+         </div>
       </section>
     </>
   );
