@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from "react";
+import { useRef, useState } from "react";
 
 interface Video {
   src: string;
@@ -25,86 +25,81 @@ interface VideoSectionProps {
 
 export default function VideoSection({ t }: VideoSectionProps) {
   const mainVideoRef = useRef<HTMLVideoElement>(null);
-  const [isMutedSeaPoint, setIsMutedSeaPoint] = useState(true);
+  const carouselRefs = t.smartHomeSection.videos.map(() => useRef<HTMLVideoElement>(null));
 
-  const smartHomeVideos = t.smartHomeSection.videos;
-  const totalVideos = smartHomeVideos.length;
-
-  // إنشاء المراجع لكل فيديو في الكروسيل مرة واحدة
-  const videoRefs = useMemo(
-    () => smartHomeVideos.map(() => useRef<HTMLVideoElement>(null)),
-    [totalVideos]
-  );
-
-  const [currentVideo, setCurrentVideo] = useState(0);
+  const [mainMuted, setMainMuted] = useState(true);
   const [carouselMuted, setCarouselMuted] = useState<boolean[]>(
-    smartHomeVideos.map(() => true)
+    t.smartHomeSection.videos.map(() => true)
   );
-
-  const prevVideo = () => {
-    stopVideo(currentVideo);
-    const newIndex = currentVideo === 0 ? totalVideos - 1 : currentVideo - 1;
-    setCurrentVideo(newIndex);
-  };
-
-  const nextVideo = () => {
-    stopVideo(currentVideo);
-    const newIndex = currentVideo === totalVideos - 1 ? 0 : currentVideo + 1;
-    setCurrentVideo(newIndex);
-  };
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const toggleMainSound = () => {
     if (mainVideoRef.current) {
       mainVideoRef.current.muted = !mainVideoRef.current.muted;
-      setIsMutedSeaPoint(mainVideoRef.current.muted);
+      setMainMuted(mainVideoRef.current.muted);
     }
   };
 
   const toggleCarouselSound = (index: number) => {
-    const vid = videoRefs[index].current;
+    const vid = carouselRefs[index].current;
     if (vid) {
       vid.muted = !vid.muted;
       setCarouselMuted((prev) => prev.map((m, i) => (i === index ? vid.muted : m)));
     }
   };
 
-  const stopVideo = (index: number) => {
-    const vid = videoRefs[index]?.current;
-    if (vid) {
-      vid.pause();
-      vid.currentTime = 0;
-    }
+  const prevVideo = () => {
+    setCurrentIndex((prev) => {
+      const newIndex = prev === 0 ? carouselRefs.length - 1 : prev - 1;
+      const vid = carouselRefs[newIndex].current;
+      if (vid) {
+        vid.muted = carouselMuted[newIndex]; // يترك الحالة حسب muted الحالي
+        vid.play(); // يضمن تشغيل الفيديو
+      }
+      return newIndex;
+    });
+  };
+
+  const nextVideo = () => {
+    setCurrentIndex((prev) => {
+      const newIndex = prev === carouselRefs.length - 1 ? 0 : prev + 1;
+      const vid = carouselRefs[newIndex].current;
+      if (vid) {
+        vid.muted = carouselMuted[newIndex]; // يترك الحالة حسب muted الحالي
+        vid.play(); // يضمن تشغيل الفيديو
+      }
+      return newIndex;
+    });
   };
 
   return (
     <>
-      {/* Sea Point */}
+      {/* الفيديو الرئيسي */}
       <section className="py-32 bg-gradient-to-br from-[#f8f6f3] to-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-br from-[#D9C18E]/30 to-transparent rounded-3xl blur opacity-40 group-hover:opacity-60 transition duration-500" />
+            <div className="relative">
               <video
                 ref={mainVideoRef}
                 src={`/${t.videoSection.video}`}
                 autoPlay
                 loop
-                muted={isMutedSeaPoint}
+                muted={mainMuted}
                 playsInline
-                className="w-full h-[520px] md:h-[600px] object-cover rounded-3xl shadow-2xl relative z-10"
+                className="w-full h-[520px] md:h-[600px] object-cover rounded-3xl shadow-2xl"
               />
               <button
                 onClick={toggleMainSound}
-                className="absolute bottom-4 right-4 bg-white/70 hover:bg-white p-2 rounded-full shadow-lg"
+                className="absolute bottom-6 left-6 bg-black/50 text-white px-4 py-2 rounded-xl hover:bg-black/70 transition z-20"
               >
-                {isMutedSeaPoint ? "🔇" : "🔊"}
+                {mainMuted ? "🔇" : "🔊"}
               </button>
             </div>
 
             <div className="space-y-6 animate-fade-in-right">
               <h3 className="text-xl font-bold text-[#003B4A]">{t.videoSection.title}</h3>
               <p className="text-gray-600 text-2xl leading-relaxed">{t.videoSection.text}</p>
-              <button className="mt-6 px-10 py-4 bg-gradient-to-r from-[#D9C18E] to-[#c4a76d] text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+              <button className="mt-6 px-10 py-4 bg-gradient-to-r from-[#D9C18E] to-[#c4a76d] text-white font-bold rounded-2xl shadow-xl hover:-translate-y-1 transition-all duration-300">
                 {t.videoSection.button}
               </button>
             </div>
@@ -112,50 +107,47 @@ export default function VideoSection({ t }: VideoSectionProps) {
         </div>
       </section>
 
-      {/* Smart Home Carousel */}
-      <section className="py-32 bg-gray-50 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h3 className="text-3xl font-bold text-[#003B4A] mb-12">{t.smartHomeSection.title}</h3>
-          <p className="text-gray-700 text-lg mb-8">{t.smartHomeSection.description}</p>
+      {/* كروسيل Smart Home */}
+      <section className="py-32 bg-gray-50 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-[#003B4A] mb-4">{t.smartHomeSection.title}</h2>
+          <p className="text-gray-600 mb-8">{t.smartHomeSection.description}</p>
 
-          <div className="relative">
-            {smartHomeVideos.map((video, index) => (
-              <video
-                key={index}
-                ref={videoRefs[index]}
-                src={`/${video.src}`}
-                autoPlay={index === currentVideo}
-                loop
-                muted={carouselMuted[index]}
-                playsInline
-                className={`w-full h-[520px] md:h-[600px] object-cover rounded-3xl shadow-2xl relative z-10 transition-opacity duration-500 ${
-                  index === currentVideo ? "opacity-100" : "opacity-0 absolute top-0 left-0"
-                }`}
-              />
-            ))}
+          <div className="relative w-full h-[520px] md:h-[600px] mx-auto">
+            <video
+              ref={carouselRefs[currentIndex]}
+              src={`/${t.smartHomeSection.videos[currentIndex].src}`}
+              autoPlay
+              loop
+              muted={carouselMuted[currentIndex]}
+              playsInline
+              className="w-full h-full object-cover rounded-3xl shadow-xl"
+            />
 
+            {/* أزرار الأسهم */}
             <button
               onClick={prevVideo}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg z-20"
             >
               &#8592;
             </button>
             <button
               onClick={nextVideo}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white p-3 rounded-full shadow-lg z-20"
             >
               &#8594;
             </button>
 
+            {/* زر الصوت */}
             <button
-              onClick={() => toggleCarouselSound(currentVideo)}
-              className="absolute bottom-4 right-4 bg-white/70 hover:bg-white p-2 rounded-full shadow-lg"
+              onClick={() => toggleCarouselSound(currentIndex)}
+              className="absolute bottom-6 right-6 bg-black/50 text-white px-4 py-2 rounded-xl hover:bg-black/70 transition z-20"
             >
-              {carouselMuted[currentVideo] ? "🔇" : "🔊"}
+              {carouselMuted[currentIndex] ? "🔇" : "🔊"}
             </button>
           </div>
 
-          <p className="text-center mt-4 text-gray-600">{smartHomeVideos[currentVideo]?.alt}</p>
+          <p className="mt-4 text-gray-600">{t.smartHomeSection.videos[currentIndex].alt}</p>
         </div>
       </section>
     </>
