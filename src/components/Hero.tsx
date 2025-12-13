@@ -43,8 +43,8 @@ export default function Hero({ t, language, setLanguage }: HeroProps) {
             <div className="relative z-10 text-center px-4 w-full pointer-events-auto">
                 <div className="flex justify-center mb-12 animate-fade-in-down">
                     <img
-                        src="/untitled_design_(47).png"
-                        alt="Sea Point Logo"
+                        src="/Untitled-2.png"
+                        alt="Untitled-2"
                         className="h-24 w-auto md:h-32 drop-shadow-2xl"
                     />
                 </div>
