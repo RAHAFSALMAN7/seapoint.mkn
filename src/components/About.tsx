@@ -1,4 +1,5 @@
-import { Check } from "lucide-react";
+import { Check, Volume2, VolumeX } from "lucide-react";
+import { useRef, useState } from "react";
 
 interface AboutProps {
   t: any;
@@ -6,6 +7,15 @@ interface AboutProps {
 }
 
 export default function About({ t, language }: AboutProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = useState(true);
+
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    videoRef.current.muted = !videoRef.current.muted;
+    setMuted(videoRef.current.muted);
+  };
+
   return (
     <section className="py-32 bg-gradient-to-br from-[#f8f6f3] to-white relative overflow-hidden">
       
@@ -22,9 +32,10 @@ export default function About({ t, language }: AboutProps) {
             <div className="absolute -inset-6 bg-gradient-to-tl from-[#003B4A]/10 to-transparent rounded-3xl transform rotate-2" />
 
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+
               {/* Pattern overlay */}
               <div
-                className="absolute -inset-4"
+                className="absolute -inset-4 pointer-events-none"
                 style={{
                   background:
                     "repeating-linear-gradient(45deg, transparent, transparent 10px, #D9C18E 10px, #D9C18E 11px, transparent 11px, transparent 20px)",
@@ -34,14 +45,24 @@ export default function About({ t, language }: AboutProps) {
 
               {/* Video */}
               <video
+                ref={videoRef}
                 src="/SEAPOINT.mp4"
                 autoPlay
                 loop
-                muted
+                muted={muted}
                 playsInline
                 preload="metadata"
                 className="w-full h-[600px] object-cover relative"
               />
+
+              {/* 🔊 زر الصوت */}
+              <button
+                onClick={toggleMute}
+                className="absolute bottom-4 right-4 z-20 w-12 h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition"
+                aria-label="Toggle sound"
+              >
+                {muted ? <VolumeX size={22} /> : <Volume2 size={22} />}
+              </button>
             </div>
           </div>
 
