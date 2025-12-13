@@ -13,291 +13,143 @@ interface SmartHomeSection {
 
 interface VideoSectionProps {
   t: {
-    videoSection: {
-      video: string;
-      text: string;
-      button: string;
-      title: string;
-    };
     smartHomeSection: SmartHomeSection;
   };
 }
 
 export default function VideoSection({ t }: VideoSectionProps) {
-  const mainVideoRef = useRef<HTMLVideoElement>(null);
-  const carouselVideoRef = useRef<HTMLVideoElement>(null);
-
-  /* ===== Main Video ===== */
-  const [mainPlaying, setMainPlaying] = useState(true);
-  const [mainMuted, setMainMuted] = useState(true);
-  const [mainProgress, setMainProgress] = useState(0);
-  const [mainDuration, setMainDuration] = useState(0);
-
-  /* ===== Carousel Video ===== */
-  const [carouselPlaying, setCarouselPlaying] = useState(true);
-  const [carouselMuted, setCarouselMuted] = useState(true);
-  const [carouselProgress, setCarouselProgress] = useState(0);
-  const [carouselDuration, setCarouselDuration] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  const [muted, setMuted] = useState(true);
 
-  /* ===== Helpers ===== */
-  const togglePlay = (
-    ref: React.RefObject<HTMLVideoElement>,
-    playing: boolean,
-    setPlaying: (v: boolean) => void
-  ) => {
-    if (!ref.current) return;
-    playing ? ref.current.pause() : ref.current.play();
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    playing ? videoRef.current.pause() : videoRef.current.play();
     setPlaying(!playing);
   };
 
-  const toggleMute = (
-    ref: React.RefObject<HTMLVideoElement>,
-    muted: boolean,
-    setMuted: (v: boolean) => void
-  ) => {
-    if (!ref.current) return;
-    ref.current.muted = !muted;
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    videoRef.current.muted = !muted;
     setMuted(!muted);
   };
 
-  const changeVideo = (index: number) => {
-    setCurrentIndex(index);
-    setCarouselPlaying(true);
-    setCarouselProgress(0);
-  };
-
   const prevVideo = () => {
-    changeVideo(
-      currentIndex === 0
-        ? t.smartHomeSection.videos.length - 1
-        : currentIndex - 1
+    setCurrentIndex((prev) =>
+      prev === 0 ? t.smartHomeSection.videos.length - 1 : prev - 1
     );
+    setPlaying(true);
   };
 
   const nextVideo = () => {
-    changeVideo(
-      currentIndex === t.smartHomeSection.videos.length - 1
-        ? 0
-        : currentIndex + 1
+    setCurrentIndex((prev) =>
+      prev === t.smartHomeSection.videos.length - 1 ? 0 : prev + 1
     );
+    setPlaying(true);
   };
 
   return (
-    <>
-      {/* ================= Main Video ================= */}
-      <section className="py-32 bg-gradient-to-br from-[#f8f6f3] to-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+    <section className="py-32 bg-gradient-to-b from-white to-[#f8f6f3]">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid md:grid-cols-2 gap-20 items-center">
 
-            {/* VIDEO */}
-            <div className="relative">
-              <video
-                ref={mainVideoRef}
-                src={`/${t.videoSection.video}`}
-                autoPlay
-                loop
-                muted={mainMuted}
-                playsInline
-                onTimeUpdate={() =>
-                  mainVideoRef.current &&
-                  setMainProgress(mainVideoRef.current.currentTime)
-                }
-                onLoadedMetadata={() =>
-                  mainVideoRef.current &&
-                  setMainDuration(mainVideoRef.current.duration)
-                }
-                className="w-full h-[520px] object-cover rounded-3xl shadow-2xl"
-              />
+          {/* TEXT */}
+          <div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-[#003B4A] leading-tight">
+              {t.smartHomeSection.title}
+            </h2>
 
-              {/* CONTROLS */}
-              <div className="absolute bottom-6 left-6 flex gap-3 z-20">
-                <button
-                  onClick={() =>
-                    togglePlay(mainVideoRef, mainPlaying, setMainPlaying)
-                  }
-                  className="w-11 h-11 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow"
-                >
-                  {mainPlaying ? (
-                    <Pause size={18} className="text-[#003B4A]" />
-                  ) : (
-                    <Play size={18} className="text-[#003B4A]" />
-                  )}
-                </button>
-
-                <button
-                  onClick={() =>
-                    toggleMute(mainVideoRef, mainMuted, setMainMuted)
-                  }
-                  className="w-11 h-11 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow"
-                >
-                  {mainMuted ? (
-                    <VolumeX size={18} className="text-[#003B4A]" />
-                  ) : (
-                    <Volume2 size={18} className="text-[#003B4A]" />
-                  )}
-                </button>
-              </div>
-
-              {/* SEEK BAR */}
-              <input
-                type="range"
-                min={0}
-                max={mainDuration}
-                value={mainProgress}
-                onChange={(e) =>
-                  mainVideoRef.current &&
-                  (mainVideoRef.current.currentTime = Number(e.target.value))
-                }
-                className="absolute bottom-2 left-6 right-6 h-[3px] accent-[#D9C18E] cursor-pointer"
-              />
-            </div>
-
-            {/* TEXT */}
-            <div>
-              <h3 className="text-xl font-bold text-[#003B4A]">
-                {t.videoSection.title}
-              </h3>
-              <p className="text-gray-600 text-2xl mt-4 leading-relaxed">
-                {t.videoSection.text}
-              </p>
-            </div>
+            <p className="text-lg text-[#003B4A]/70 mt-6 leading-relaxed max-w-md">
+              {t.smartHomeSection.description}
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* ================= Smart Home (9:16) ================= */}
-      <section className="py-32 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* VIDEO */}
+          <div className="flex justify-center">
+            <div className="relative group w-full max-w-[380px]">
 
-            {/* TEXT */}
-            <div>
-              <h2 className="text-3xl font-bold text-[#003B4A]">
-                {t.smartHomeSection.title}
-              </h2>
-              <p className="text-gray-600 mt-4 leading-relaxed">
-                {t.smartHomeSection.description}
-              </p>
-            </div>
+              {/* Glow */}
+              <div className="absolute -inset-2 bg-gradient-to-br from-[#D9C18E]/40 to-transparent rounded-[2rem] blur-xl opacity-60 group-hover:opacity-80 transition" />
 
-            {/* VIDEO + DOTS */}
-            <div className="flex flex-col items-center">
-              <div className="relative w-full max-w-[320px] aspect-[9/16] rounded-3xl shadow-xl overflow-hidden">
+              <div className="relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl">
 
                 <video
                   key={currentIndex}
-                  ref={carouselVideoRef}
+                  ref={videoRef}
                   src={`/${t.smartHomeSection.videos[currentIndex].src}`}
                   autoPlay
                   loop
-                  muted={carouselMuted}
+                  muted={muted}
                   playsInline
-                  onTimeUpdate={() =>
-                    carouselVideoRef.current &&
-                    setCarouselProgress(
-                      carouselVideoRef.current.currentTime
-                    )
-                  }
-                  onLoadedMetadata={() =>
-                    carouselVideoRef.current &&
-                    setCarouselDuration(
-                      carouselVideoRef.current.duration
-                    )
-                  }
                   className="absolute inset-0 w-full h-full object-cover"
                 />
 
                 {/* CONTROLS */}
-                <div className="absolute bottom-6 left-4 flex gap-3 z-20">
-                  <button
-                    onClick={() =>
-                      togglePlay(
-                        carouselVideoRef,
-                        carouselPlaying,
-                        setCarouselPlaying
-                      )
-                    }
-                    className="w-10 h-10 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow"
-                  >
-                    {carouselPlaying ? (
-                      <Pause size={16} className="text-[#003B4A]" />
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2
+                  bg-black/40 backdrop-blur-lg rounded-full px-4 py-2 flex items-center gap-4">
+
+                  <button onClick={togglePlay}>
+                    {playing ? (
+                      <Pause size={16} className="text-white" />
                     ) : (
-                      <Play size={16} className="text-[#003B4A]" />
+                      <Play size={16} className="text-white" />
                     )}
                   </button>
 
-                  <button
-                    onClick={() =>
-                      toggleMute(
-                        carouselVideoRef,
-                        carouselMuted,
-                        setCarouselMuted
-                      )
-                    }
-                    className="w-10 h-10 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow"
-                  >
-                    {carouselMuted ? (
-                      <VolumeX size={16} className="text-[#003B4A]" />
+                  <button onClick={toggleMute}>
+                    {muted ? (
+                      <VolumeX size={16} className="text-white" />
                     ) : (
-                      <Volume2 size={16} className="text-[#003B4A]" />
+                      <Volume2 size={16} className="text-white" />
                     )}
                   </button>
                 </div>
-
-                {/* SEEK BAR */}
-                <input
-                  type="range"
-                  min={0}
-                  max={carouselDuration}
-                  value={carouselProgress}
-                  onChange={(e) =>
-                    carouselVideoRef.current &&
-                    (carouselVideoRef.current.currentTime = Number(e.target.value))
-                  }
-                  className="absolute bottom-2 left-4 right-4 h-[3px] accent-[#D9C18E] cursor-pointer"
-                />
 
                 {/* ARROWS */}
                 <button
                   onClick={prevVideo}
                   className="absolute left-3 top-1/2 -translate-y-1/2
-                             w-10 h-10 rounded-full bg-white/70 backdrop-blur
-                             flex items-center justify-center shadow-md hover:bg-white transition z-20"
+                  w-10 h-10 rounded-full bg-white/80 backdrop-blur
+                  flex items-center justify-center shadow hover:bg-white transition"
                 >
-                  <span className="text-[#003B4A] text-2xl">‹</span>
+                  <span className="text-[#003B4A] text-xl">‹</span>
                 </button>
 
                 <button
                   onClick={nextVideo}
                   className="absolute right-3 top-1/2 -translate-y-1/2
-                             w-10 h-10 rounded-full bg-white/70 backdrop-blur
-                             flex items-center justify-center shadow-md hover:bg-white transition z-20"
+                  w-10 h-10 rounded-full bg-white/80 backdrop-blur
+                  flex items-center justify-center shadow hover:bg-white transition"
                 >
-                  <span className="text-[#003B4A] text-2xl">›</span>
+                  <span className="text-[#003B4A] text-xl">›</span>
                 </button>
               </div>
 
               {/* DOTS */}
-              <div className="flex gap-3 mt-6">
+              <div className="flex justify-center gap-3 mt-6">
                 {t.smartHomeSection.videos.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => changeVideo(index)}
-                    className={`w-3 h-3 rounded-full transition ${
+                    onClick={() => {
+                      setCurrentIndex(index);
+                      setPlaying(true);
+                    }}
+                    className={`w-2.5 h-2.5 rounded-full transition ${
                       currentIndex === index
-                        ? "bg-[#D9C18E]"
+                        ? "bg-[#D9C18E] shadow-[0_0_10px_#D9C18E]"
                         : "bg-[#003B4A]/30 hover:bg-[#003B4A]/50"
                     }`}
                   />
                 ))}
               </div>
-            </div>
 
+            </div>
           </div>
+
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

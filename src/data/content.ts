@@ -1,7 +1,7 @@
 export const content = {
   ar: {
     hero: {
-      title: 'سي بوينت — مفهوم جديد للحياة العصرية',
+      title: 'سي بوينت مفهوم جديد للحياة العصرية',
       subtitle: 'فلل نموذجية بتفاصيل حديثة… تجمع بين الراحة، الفخامة، والابتكار'
     },
 
@@ -24,33 +24,75 @@ export const content = {
         'اضغط لبدء جولة افتراضية شاملة تمكنك من التجول في جميع أركان الفلة واستكشاف المساحات والتفاصيل بدقة عالية'
     },
 
-
     gallery: {
       title: 'معرض المشروع',
       subtitle: 'استعرض التصاميم الفاخرة والتفاصيل المعمارية لمشروع سي بوينت'
     },
 
-    /* ⭐ سكشن الفيديو الجديد ⭐ */
+    projectVideoGallery: {
+      title: 'معرض الفيديو',
+      subtitle: 'استعرض لقطات المشروع',
+      text:
+        'كن أقرب ما يكون إلى البحر… في قلب حي ثروة حيث تلتقي الحياة الهادئة بالفخامة الراقية. شقتك الفاخرة بانتظارك لتمنحك أسلوب حياة جديد، يوازن بين الراحة، الخصوصية، والإطلالات الساحرة. اكتشف تجربة سكنية استثنائية… وكل ذلك على بُعد خطوات فقط من البحر.'
+    },
+
     videoSection: {
-      video: "video.mp4",
-      title: "mkn_ksa",
-      text: "كن أقرب ما يكون إلى البحر… في قلب حي ثروة حيث تلتقي الحياة الهادئة بالفخامة الراقية. شقتك الفاخرة بانتظارك لتمنحك أسلوب حياة جديد، يوازن بين الراحة، الخصوصية، والإطلالات الساحرة. اكتشف تجربة سكنية استثنائية… وكل ذلك على بُعد خطوات فقط من البحر.",
-      button: "سجّل اهتمامك الآن"
-    }
-    ,
+      video: 'video.mp4',
+      text:
+        'كن أقرب ما يكون إلى البحر… في قلب حي ثروة حيث تلتقي الحياة الهادئة بالفخامة الراقية. شقتك الفاخرة بانتظارك لتمنحك أسلوب حياة جديد، يوازن بين الراحة، الخصوصية، والإطلالات الساحرة. اكتشف تجربة سكنية استثنائية… وكل ذلك على بُعد خطوات فقط من البحر.',
+      button: 'سجّل اهتمامك الآن'
+    },
+
     smartHomeSection: {
-      title: "تقنية المنزل الذكي",
+      title: 'تقنية المنزل الذكي',
       description:
-        "نُحدث نقلة نوعية في المنازل في جميع أنحاء الإمارات من خلال حلول أتمتة المنازل الذكية المتطورة. عش مستقبل السكن مع زكسس.",
+        'نُحدث نقلة نوعية في المنازل في جميع أنحاء الإمارات من خلال حلول أتمتة المنازل الذكية المتطورة. عش مستقبل السكن مع زكسس.',
       videos: [
-         { src: "zuccesshome.mp4" },
-        { src: "zuccesshomesystem.mp4" },
-        { src: "Smarthomebyzuccess.mp4" },
-        { src: "smarthome.mp4" }
+        { src: 'zuccesshome.mp4' },
+        { src: 'zuccesshomesystem.mp4' },
+        { src: 'Smarthomebyzuccess.mp4' },
+        { src: 'smarthome.mp4' }
       ]
     },
 
+    pricing: {
+      title: 'الأسعار والمساحات',
+      subtitle: 'خيارات متعددة تناسب مختلف الاحتياجات',
+      note:
+        'للاطلاع على جميع التفاصيل والمخططات المعمارية وخطط الدفع، يمكنك تحميل البروشور الكامل للمشروع.',
+      brochure:
+        'https://seapoint.thrillagency.net/wp-content/uploads/2025/04/Sea-Point-Profile.pdf',
 
+      /* ✅ الإضافة */
+      download: 'تحميل البروشور PDF',
+      labels: {
+        area: 'المساحة',
+        price: 'السعر يبدأ من',
+        rooms: 'عدد الغرف'
+      },
+      /* ✅ */
+
+      items: [
+        {
+          type: 'فيلا Type A',
+          area: '320 م²',
+          price: 'يبدأ من 1,850,000 ريال',
+          rooms: '4 غرف نوم'
+        },
+        {
+          type: 'فيلا Type B',
+          area: '360 م²',
+          price: 'يبدأ من 2,150,000 ريال',
+          rooms: '5 غرف نوم'
+        },
+        {
+          type: 'فيلا Type C',
+          area: '420 م²',
+          price: 'يبدأ من 2,450,000 ريال',
+          rooms: '6 غرف نوم'
+        }
+      ]
+    },
 
     features: {
       title: 'مميزات سي بوينت',
@@ -67,29 +109,36 @@ export const content = {
     about: {
       title: 'من نحن',
       paragraphs: [
-        'شركة مكن للتطوير العقاري هي إحدى الشركات الرائدة في قطاع التطوير العقاري بالمملكة العربية السعودية، وتتميز بتقديم مشاريع سكنية مبتكرة تجمع بين الجودة العالية والتصميم العصري الذي يلبي تطلعات العائلات السعودية. ويأتي مشروع سي بوينت كأحد أبرز مشاريعنا التي تعكس رؤيتنا في الارتقاء بمعايير السكن الحديث.',
-
-        'منذ تأسيس شركة مكن، نعمل على بناء مجتمعات سكنية متكاملة توفر بيئة حياة مثالية من خلال حلول معمارية مبتكرة وخدمات استثنائية. نؤمن بأن التطوير العقاري هو صناعة مستقبل، لذلك نحرص على تطبيق أفضل الممارسات العالمية مع الحفاظ على الطابع المحلي وروح المكان.',
-
-        'يضم فريق مكن نخبة من الخبراء والمتخصصين الذين يعملون بشغف وإتقان لتجسيد رؤيتنا وتحقيق التميز في كل مشروع. ومع مشروع سي بوينت، نسعى لتقديم تجربة سكنية راقية تجمع بين الراحة والفخامة والابتكار، وترتقي بتوقعات عملائنا نحو الأفضل.'
+        'شركة مكن للتطوير العقاري هي إحدى الشركات الرائدة في قطاع التطوير العقاري بالمملكة العربية السعودية، وتتميز بتقديم مشاريع سكنية مبتكرة تجمع بين الجودة العالية والتصميم العصري.',
+        'منذ تأسيس شركة مكن، نعمل على بناء مجتمعات سكنية متكاملة توفر بيئة حياة مثالية من خلال حلول معمارية مبتكرة وخدمات استثنائية.',
+        'يضم فريق مكن نخبة من الخبراء والمتخصصين الذين يعملون بشغف وإتقان لتجسيد رؤيتنا وتحقيق التميز في كل مشروع.'
       ],
       experience: 'أكثر من 20 عاماً من الخبرة',
       experienceDesc: 'في تطوير المشاريع السكنية الراقية'
     },
 
-
     cta: {
-      title: 'جاهز لزيارة سي بوينت؟',
-      subtitle: 'فريق سي بوينت بانتظارك لمساعدتك في اتخاذ أفضل قرار',
-      whatsapp: 'تواصل عبر واتساب',
-      call: 'اتصل بنا',
-      note: 'أو احجز موعد زيارة للفلة النموذجية وتعرّف على التفاصيل عن قرب',
-      services: [
-        { title: 'زيارة الموقع', description: 'احجز جولة في المشروع' },
-        { title: 'خطط التمويل', description: 'استفسر عن خيارات الدفع' },
-        { title: 'استشارة مجانية', description: 'تحدث مع أحد خبرائنا' }
-      ]
-    },
+  title: 'جاهز لزيارة سي بوينت؟',
+  subtitle: 'فريق سي بوينت بانتظارك لمساعدتك في اتخاذ أفضل قرار',
+  whatsapp: 'تواصل عبر واتساب',
+  call: 'اتصل بنا',
+  note: 'أو احجز موعد زيارة للفلة النموذجية وتعرّف على التفاصيل عن قرب',
+
+  /* ✅ FORM CONTENT */
+  formTitle: 'تواصل معنا',
+  name: 'الاسم الكامل',
+  phone: 'رقم الهاتف',
+  email: 'البريد الإلكتروني',
+  message: 'رسالتك',
+  send: 'إرسال',
+  /* ✅ */
+
+  services: [
+    { title: 'زيارة الموقع', description: 'احجز جولة في المشروع' },
+    { title: 'خطط التمويل', description: 'استفسر عن خيارات الدفع' },
+    { title: 'استشارة مجانية', description: 'تحدث مع أحد خبرائنا' }
+  ]
+},
 
     footer: {
       description: 'سي بوينت للتطوير العقاري — نبني مستقبل السكن الفاخر في المملكة العربية السعودية',
@@ -103,13 +152,11 @@ export const content = {
     }
   },
 
-  /* ================================
-     ENGLISH VERSION
-     ================================ */
+  /* ================= ENGLISH ================= */
 
   en: {
     hero: {
-      title: 'Sea Point — A New Concept for Modern Living',
+      title: 'Sea Point A New Concept for Modern Living',
       subtitle: 'Model villas with modern details… combining comfort, luxury, and innovation'
     },
 
@@ -128,37 +175,79 @@ export const content = {
       title: 'Explore the Model Villa with a 360° Experience',
       subtitle: 'An interactive virtual tour that allows you to explore every detail of the villa from your home',
       cta: 'Click to Start the Virtual Tour',
-      description: 'Click to start a comprehensive virtual tour that allows you to walk through all corners of the villa and explore the spaces and details with high accuracy'
+      description:
+        'Click to start a comprehensive virtual tour that allows you to walk through all corners of the villa and explore the spaces and details with high accuracy'
     },
-
-
 
     gallery: {
       title: 'Project Gallery',
       subtitle: 'Browse the luxurious designs and architectural details of Sea Point project'
     },
 
-    /* ⭐ Video Section ⭐ */
-    videoSection: {
-      video: "video.mp4",
-      title: "mkn_ksa",
-      text: "Live just steps away from the sea in Tharwa District—where luxury meets tranquility. Your new premium apartment awaits, offering a lifestyle that blends privacy, comfort, and breathtaking coastal views. Discover an elevated living experience designed for those who seek more than just a home.",
-      button: "Register Your Interest"
-    }
+    projectVideoGallery: {
+      title: 'Video Gallery',
+      subtitle: 'Explore project highlights',
+      text:
+        'Live just steps away from the sea in Tharwa District—where luxury meets tranquility. Your premium apartment awaits, offering a lifestyle that balances comfort, privacy, and breathtaking views.'
+    },
 
-    ,
+    videoSection: {
+      video: 'video.mp4',
+      text:
+        'Live just steps away from the sea in Tharwa District—where luxury meets tranquility. Your new premium apartment awaits, offering a lifestyle that blends privacy, comfort, and breathtaking coastal views.',
+      button: 'Register Your Interest'
+    },
+
     smartHomeSection: {
-      title: "Smart Home Technology",
+      title: 'Smart Home Technology',
       description:
-        "Transforming homes across the UAE with cutting-edge smart home automation solutions. Experience the future of living with Zuccess.",
+        'Transforming homes across the UAE with cutting-edge smart home automation solutions. Experience the future of living with Zuccess.',
       videos: [
-        { src: "zuccesshome.mp4" },
-        { src: "zuccesshomesystem.mp4" },
-        { src: "Smarthomebyzuccess.mp4" },
-        { src: "smarthome.mp4" }
+        { src: 'zuccesshome.mp4' },
+        { src: 'zuccesshomesystem.mp4' },
+        { src: 'Smarthomebyzuccess.mp4' },
+        { src: 'smarthome.mp4' }
       ]
     },
 
+    pricing: {
+      title: 'Prices & Areas',
+      subtitle: 'Multiple options tailored to your lifestyle',
+      note:
+        'For full specifications, layouts, and payment plans, please download the project brochure.',
+      brochure:
+        'https://seapoint.thrillagency.net/wp-content/uploads/2025/04/Sea-Point-Profile.pdf',
+
+      /* ✅ الإضافة */
+      download: 'Download PDF Brochure',
+      labels: {
+        area: 'Area',
+        price: 'Starting Price',
+        rooms: 'Bedrooms'
+      },
+      /* ✅ */
+
+      items: [
+        {
+          type: 'Villa Type A',
+          area: '320 sqm',
+          price: 'Starting from 1,850,000 SAR',
+          rooms: '4 Bedrooms'
+        },
+        {
+          type: 'Villa Type B',
+          area: '360 sqm',
+          price: 'Starting from 2,150,000 SAR',
+          rooms: '5 Bedrooms'
+        },
+        {
+          type: 'Villa Type C',
+          area: '420 sqm',
+          price: 'Starting from 2,450,000 SAR',
+          rooms: '6 Bedrooms'
+        }
+      ]
+    },
 
     features: {
       title: 'Sea Point Features',
@@ -173,31 +262,38 @@ export const content = {
     },
 
     about: {
-      title: "About Us",
+      title: 'About Us',
       paragraphs: [
-        "MKN Real Estate Development is one of the leading companies in the Saudi real estate sector, distinguished by delivering innovative residential projects that combine high quality with contemporary design that meets the aspirations of modern Saudi families. Sea Point stands as one of our flagship projects, reflecting our vision to elevate the standards of modern living.",
-
-        "Since the establishment of MKN, we have been committed to building integrated residential communities that provide an ideal living environment through innovative architectural solutions and exceptional services. We believe that real estate development is the creation of a future, which is why we apply global best practices while preserving the local identity and spirit of place.",
-
-        "Our team at MKN consists of highly skilled experts who work with passion and precision to bring our vision to life and deliver excellence in every project. With Sea Point, we aim to offer a refined residential experience that blends comfort, luxury, and innovation—setting a new benchmark for upscale living."
+        'MKN Real Estate Development is one of the leading companies in the Saudi real estate sector.',
+        'Since its establishment, MKN has focused on building integrated residential communities.',
+        'With Sea Point, we aim to offer a refined residential experience that blends comfort, luxury, and innovation.'
       ],
-      experience: "Over 20 Years of Experience",
-      experienceDesc: "In developing upscale residential projects"
+      experience: 'Over 20 Years of Experience',
+      experienceDesc: 'In developing upscale residential projects'
     },
-
 
     cta: {
-      title: 'Ready to Visit Sea Point?',
-      subtitle: 'The Sea Point team is waiting to help you make the best decision',
-      whatsapp: 'Contact via WhatsApp',
-      call: 'Call Us',
-      note: 'Or book a visit to the model villa and explore the details up close',
-      services: [
-        { title: 'Site Visit', description: 'Book a tour of the project' },
-        { title: 'Financing Plans', description: 'Inquire about payment options' },
-        { title: 'Free Consultation', description: 'Talk to one of our experts' }
-      ]
-    },
+  title: 'Ready to Visit Sea Point?',
+  subtitle: 'The Sea Point team is waiting to help you make the best decision',
+  whatsapp: 'Contact via WhatsApp',
+  call: 'Call Us',
+  note: 'Or book a visit to the model villa and explore the details up close',
+
+  /* ✅ FORM CONTENT */
+  formTitle: 'Contact Us',
+  name: 'Full Name',
+  phone: 'Phone Number',
+  email: 'Email Address',
+  message: 'Your Message',
+  send: 'Send',
+  /* ✅ */
+
+  services: [
+    { title: 'Site Visit', description: 'Book a tour of the project' },
+    { title: 'Financing Plans', description: 'Inquire about payment options' },
+    { title: 'Free Consultation', description: 'Talk to one of our experts' }
+  ]
+},
 
     footer: {
       description: 'Sea Point Real Estate Development — Building the Future of Luxury Housing in Saudi Arabia',

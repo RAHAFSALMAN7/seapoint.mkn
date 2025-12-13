@@ -1,51 +1,87 @@
-import { Sparkles, Maximize2, Wind, Lightbulb, Wifi, MapPin } from "lucide-react";
+import { Home, Ruler, FileText } from "lucide-react";
 
 interface FeaturesProps {
-    t: any;
+  t: any;
 }
 
 export default function Features({ t }: FeaturesProps) {
-    return (
-        <section className="py-32 bg-gradient-to-br from-white via-[#f8f6f3] to-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  return (
+    <section className="py-32 bg-gradient-to-b from-white to-[#f8f6f3]">
+      <div className="max-w-7xl mx-auto px-4">
 
-                <div className="text-center mb-20">
-                    <h2 className="text-5xl md:text-6xl font-bold text-[#003B4A] mb-6">
-                        {t.features.title}
-                    </h2>
-                    <div className="w-32 h-1 bg-[#D9C18E] mx-auto" />
-                </div>
+        {/* TITLE */}
+        <div className="text-center mb-24">
+          <h2 className="text-5xl md:text-6xl font-bold text-[#003B4A] mb-6">
+            {t.pricing.title}
+          </h2>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {t.features.items.map((feature: any, index: number) => {
-                        const icons = [Sparkles, Maximize2, Wind, Lightbulb, Wifi, MapPin];
-                        const Icon = icons[index];
+          <p className="text-xl text-[#003B4A]/70 max-w-3xl mx-auto">
+            {t.pricing.subtitle}
+          </p>
 
-                        return (
-                            <div key={index} className="group relative">
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#D9C18E] to-[#c4a76d] rounded-3xl transform group-hover:scale-105 transition duration-500 opacity-0 group-hover:opacity-100" />
+          <div className="w-32 h-1 bg-[#D9C18E] mx-auto mt-8" />
+        </div>
 
-                                <div className="relative bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition duration-500 border border-[#D9C18E]/20">
+        {/* ICONS ROW */}
+        <div className="grid md:grid-cols-3 gap-16 max-w-5xl mx-auto text-center">
 
-                                    <div className="w-20 h-20 bg-gradient-to-br from-[#D9C18E] to-[#c4a76d] rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-                                        <Icon className="text-white" size={36} />
-                                    </div>
+          {/* PRICES */}
+          <div className="flex flex-col items-center">
+            <Home
+              size={56}
+              className="text-[#D9C18E] mb-6"
+            />
 
-                                    <h3 className="text-2xl font-bold text-[#003B4A] mb-4">
-                                        {feature.title}
-                                    </h3>
+            <h3 className="text-2xl font-bold text-[#003B4A] mb-3">
+              {t.pricing.labels.price}
+            </h3>
 
-                                    <p className="text-gray-600 leading-relaxed">
-                                        {feature.description}
-                                    </p>
+            <p className="text-[#003B4A]/70 text-lg">
+              {t.pricing.items[0].price}
+            </p>
+          </div>
 
-                                </div>
-                            </div>
-                        );
-                    })}
-                </div>
+          {/* AREAS */}
+          <div className="flex flex-col items-center">
+            <Ruler
+              size={56}
+              className="text-[#D9C18E] mb-6"
+            />
 
-            </div>
-        </section>
-    );
+            <h3 className="text-2xl font-bold text-[#003B4A] mb-3">
+              {t.pricing.labels.area}
+            </h3>
+
+            <p className="text-[#003B4A]/70 text-lg">
+              {t.pricing.items[0].area} –{" "}
+              {t.pricing.items[t.pricing.items.length - 1].area}
+            </p>
+          </div>
+
+          {/* BROCHURE */}
+          <a
+            href={t.pricing.brochure}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center group"
+          >
+            <FileText
+              size={56}
+              className="text-[#D9C18E] mb-6 group-hover:scale-110 transition"
+            />
+
+            <h3 className="text-2xl font-bold text-[#003B4A] mb-3">
+              {t.pricing.download}
+            </h3>
+
+            <p className="text-[#003B4A]/70 text-lg">
+              PDF
+            </p>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+  );
 }

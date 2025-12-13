@@ -1,15 +1,14 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import VideoSection from "./components/VideoSection";
 import Hero from "./components/Hero";
 import VirtualTour from "./components/VirtualTour";
 import Gallery from "./components/Gallery";
 import Features from "./components/Features";
-import About from "./components/About";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
+import ProjectVideoGallery from "./components/ProjectVideoGallery";
 
 import { content } from "./data/content";
-import { galleryImages } from "./data/galleryImages";
 
 function App() {
   const [language, setLanguage] = useState<"ar" | "en">("ar");
@@ -17,31 +16,29 @@ function App() {
   const t = content[language];
 
   return (
-    <div className="min-h-screen bg-white" dir={language === "ar" ? "rtl" : "ltr"}>
-
+    <div
+      className="min-h-screen bg-white"
+      dir={language === "ar" ? "rtl" : "ltr"}
+    >
       {/* HERO */}
       <Hero t={t} language={language} setLanguage={setLanguage} />
 
-      {/* INTERIOR */}
+      {/* INTERIOR / PROJECT VIDEOS */}
+      <ProjectVideoGallery t={t} />
 
-      {/* VIDEO SECTION */}
+      {/* SMART HOME VIDEO SECTION */}
       <VideoSection t={t} />
 
       {/* VIRTUAL TOUR */}
       <VirtualTour t={t} />
 
+      {/* GALLERY (Show Apartment + Services) */}
+      <Gallery t={t} />
 
-
-      {/* GALLERY */}
-      <Gallery t={t} galleryImages={galleryImages} />
-
-      {/* FEATURES */}
+      {/* PRICING / FEATURES */}
       <Features t={t} />
 
-      {/* ABOUT */}
-      <About t={t} language={language} />
-
-      {/* CTA SECTION */}
+      {/* CTA */}
       <CTA t={t} />
 
       {/* FOOTER */}

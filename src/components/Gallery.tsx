@@ -7,79 +7,138 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 interface GalleryProps {
-    t: any;
-    galleryImages: string[];
+  t: any;
 }
 
-export default function Gallery({ t, galleryImages }: GalleryProps) {
-    const [lightboxOpen, setLightboxOpen] = useState(false);
-    const [lightboxImage, setLightboxImage] = useState("");
+export default function Gallery({ t }: GalleryProps) {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState("");
 
-    return (
-        <section className="py-24 md:py-32 bg-gradient-to-br from-[#003B4A] to-[#004B5A] overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4">
+  /* 🏡 صور شقة العرض */
+  const showApartmentImages = [
+    "/1seapoint.jpg",
+    "/2seapoint.jpg",
+    "/3seapoint.jpg",
+    "/4seapoint.jpg",
+  ];
 
-                {/* Title */}
-                <div className="text-center mb-14 md:mb-20">
-                    <h2 className="text-4xl md:text-6xl font-bold text-white mb-4 md:mb-6">
-                        {t.gallery.title}
-                    </h2>
-                    <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-                        {t.gallery.subtitle}
-                    </p>
-                </div>
+  /* 🛎️ صور الخدمات */
+  const servicesImages = [
+    "/services1.jpg",
+    "/services2.jpg",
+    "/services3.jpg",
+    "/services4.jpg",
+  ];
 
-                <Swiper
-                    modules={[Pagination, Navigation]}
-                    centeredSlides
-                    loop
-                    navigation
-                    pagination={{ clickable: true }}
-                    spaceBetween={40}
-                    breakpoints={{
-                        0: {
-                            slidesPerView: 1,
-                            spaceBetween: 20,
-                        },
-                        768: {
-                            slidesPerView: 3,
-                            spaceBetween: 60,
-                        },
-                    }}
-                    className="gallery-swiper"
-                >
-                    {galleryImages.map((image, index) => (
-                        <SwiperSlide key={index}>
-                            <div className="gallery-slide">
-                                <img
-                                    src={image}
-                                    alt={`Gallery ${index + 1}`}
-                                    onClick={() => {
-                                        setLightboxImage(image);
-                                        setLightboxOpen(true);
-                                    }}
-                                />
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+  const GallerySection = ({
+    title,
+    subtitle,
+    images,
+  }: {
+    title: string;
+    subtitle: string;
+    images: string[];
+  }) => (
+    <div className="mb-32">
+      {/* Section Title */}
+      <div className="text-center mb-14">
+        <h3 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          {title}
+        </h3>
+        <p className="text-lg text-white/80 max-w-2xl mx-auto">
+          {subtitle}
+        </p>
+      </div>
 
-                {/* Lightbox */}
-                {lightboxOpen && (
-                    <div
-                        className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-                        onClick={() => setLightboxOpen(false)}
-                    >
-                        <img
-                            src={lightboxImage}
-                            className="max-w-full max-h-[90vh] rounded-2xl shadow-2xl"
-                        />
-                    </div>
-                )}
+      {/* Swiper */}
+      <Swiper
+        modules={[Pagination, Navigation]}
+        centeredSlides
+        loop
+        initialSlide={1}   // ✅ الصورة الثانية تكون بالنص
+        navigation
+        pagination={{ clickable: true }}
+        spaceBetween={40}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 60,
+          },
+        }}
+        className="gallery-swiper"
+      >
+        {images.map((image, index) => (
+          <SwiperSlide key={index}>
+            <div className="gallery-slide">
+              <img
+                src={image}
+                alt={`${title} ${index + 1}`}
+                onClick={() => {
+                  setLightboxImage(image);
+                  setLightboxOpen(true);
+                }}
+              />
             </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
 
-            {/* ===== CSS ===== */}
-            <style>{`
+  return (
+    <section className="py-24 md:py-32 bg-gradient-to-br from-[#003B4A] to-[#004B5A] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4">
+
+        {/* MAIN TITLE */}
+        <div className="text-center mb-24">
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            {t.gallery.title}
+          </h2>
+          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
+            {t.gallery.subtitle}
+          </p>
+        </div>
+
+        {/* 🏡 SHOW APARTMENT */}
+        <GallerySection
+          title={t.gallery.showApartmentTitle || "شقة العرض"}
+          subtitle={
+            t.gallery.showApartmentSubtitle ||
+            "استعرض تفاصيل شقة العرض بتصميمها العصري"
+          }
+          images={showApartmentImages}
+        />
+
+        {/* 🛎️ SERVICES */}
+        <GallerySection
+          title={t.gallery.servicesTitle || "الخدمات"}
+          subtitle={
+            t.gallery.servicesSubtitle ||
+            "مرافق وخدمات متكاملة لأسلوب حياة فاخر"
+          }
+          images={servicesImages}
+        />
+      </div>
+
+      {/* LIGHTBOX */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <img
+            src={lightboxImage}
+            className="max-w-full max-h-[90vh] rounded-2xl shadow-2xl"
+          />
+        </div>
+      )}
+
+      {/* ===== CSS ===== */}
+      <style>{`
         .gallery-swiper {
           padding-top: 30px;
           padding-bottom: 60px;
@@ -97,7 +156,6 @@ export default function Gallery({ t, galleryImages }: GalleryProps) {
 
         .gallery-slide img {
           width: 100%;
-          max-width: 100%;
           height: 420px;
           object-fit: cover;
           border-radius: 22px;
@@ -106,7 +164,6 @@ export default function Gallery({ t, galleryImages }: GalleryProps) {
           cursor: pointer;
         }
 
-        /* ⭐ الصورة النشطة */
         .swiper-slide-active .gallery-slide {
           transform: scale(1.1) translateY(-18px);
           opacity: 1;
@@ -117,22 +174,6 @@ export default function Gallery({ t, galleryImages }: GalleryProps) {
           box-shadow: 0 30px 80px rgba(203,178,121,0.55);
         }
 
-        /* الأسهم */
-        .swiper-button-next,
-        .swiper-button-prev {
-          width: 28px;
-          height: 28px;
-          opacity: 0.8;
-          transition: transform 0.25s ease, opacity 0.25s ease;
-        }
-
-        .swiper-button-next:hover,
-        .swiper-button-prev:hover {
-          transform: scale(1.15);
-          opacity: 1;
-        }
-
-        /* pagination dots */
         .swiper-pagination-bullet {
           background: #ffffff80;
           opacity: 1;
@@ -142,7 +183,6 @@ export default function Gallery({ t, galleryImages }: GalleryProps) {
           background: #CBB279;
         }
 
-        /* 📱 موبايل */
         @media (max-width: 767px) {
           .gallery-slide {
             transform: scale(1);
@@ -159,6 +199,6 @@ export default function Gallery({ t, galleryImages }: GalleryProps) {
           }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 }
