@@ -1,9 +1,7 @@
- import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import VideoSection from "./components/VideoSection";
-
 import Hero from "./components/Hero";
 import VirtualTour from "./components/VirtualTour";
-import VirtualSeller from "./components/VirtualSeller";
 import Gallery from "./components/Gallery";
 import Features from "./components/Features";
 import About from "./components/About";
@@ -25,15 +23,14 @@ function App() {
       <Hero t={t} language={language} setLanguage={setLanguage} />
 
       {/* INTERIOR */}
- 
+
       {/* VIDEO SECTION */}
       <VideoSection t={t} />
 
       {/* VIRTUAL TOUR */}
       <VirtualTour t={t} />
 
-      {/* VIRTUAL SELLER */}
-      <VirtualSeller t={t} language={language} />
+
 
       {/* GALLERY */}
       <Gallery t={t} galleryImages={galleryImages} />
