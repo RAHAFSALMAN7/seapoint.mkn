@@ -7,6 +7,10 @@ interface HeroProps {
 }
 
 export default function Hero({ t, language, setLanguage }: HeroProps) {
+  // حماية من undefined
+  const heroTitle = t?.hero?.title || "Sea Point";
+  const heroSubtitle = t?.hero?.subtitle || "مشروع سكني مميز";
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
 
@@ -54,13 +58,13 @@ export default function Hero({ t, language, setLanguage }: HeroProps) {
             <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-[#D9C18E] to-transparent mx-auto mb-8" />
           </div>
 
-          {/* ✅ العنوان بدون أي شرطة */}
+          {/* العنوان */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-tight leading-tight">
-            {t.hero.title}
+            {heroTitle}
           </h1>
 
           <p className="text-xl md:text-3xl text-white/95 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
-            {t.hero.subtitle}
+            {heroSubtitle}
           </p>
 
           <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-[#D9C18E] to-transparent mx-auto" />
