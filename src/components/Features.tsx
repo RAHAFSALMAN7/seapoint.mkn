@@ -12,11 +12,11 @@ export default function Features({ t }: FeaturesProps) {
         {/* TITLE */}
         <div className="text-center mb-24">
           <h2 className="text-5xl md:text-6xl font-bold text-[#003B4A] mb-6">
-            {t.pricing.title}
+            {t?.pricing?.title || "الأسعار والمساحات"}
           </h2>
 
           <p className="text-xl text-[#003B4A]/70 max-w-3xl mx-auto">
-            {t.pricing.subtitle}
+            {t?.pricing?.subtitle || "خيارات تناسب احتياجاتك"}
           </p>
 
           <div className="w-32 h-1 bg-[#D9C18E] mx-auto mt-8" />
@@ -30,11 +30,11 @@ export default function Features({ t }: FeaturesProps) {
             <Home size={56} className="text-[#D9C18E] mb-6" />
 
             <h3 className="text-2xl font-bold text-[#003B4A] mb-3">
-              {t.pricing.labels.price}
+              {t?.pricing?.labels?.price || "السعر المبدئي"}
             </h3>
 
             <p className="text-[#003B4A]/70 text-lg">
-              {t.projectIntro.startingPrice}
+              {t?.projectIntro?.startingPrice || "يبدأ من ..."}
             </p>
           </div>
 
@@ -43,17 +43,17 @@ export default function Features({ t }: FeaturesProps) {
             <Ruler size={56} className="text-[#D9C18E] mb-6" />
 
             <h3 className="text-2xl font-bold text-[#003B4A] mb-3">
-              {t.pricing.labels.area}
+              {t?.pricing?.labels?.area || "المساحة المبدئية"}
             </h3>
 
             <p className="text-[#003B4A]/70 text-lg">
-              {t.projectIntro.startingArea}
+              {t?.projectIntro?.startingArea || "من ... م²"}
             </p>
           </div>
 
           {/* BROCHURE */}
           <a
-            href={t.pricing.brochure}
+            href={t?.pricing?.brochure || "#"}
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center group"
@@ -64,7 +64,7 @@ export default function Features({ t }: FeaturesProps) {
             />
 
             <h3 className="text-2xl font-bold text-[#003B4A] mb-3">
-              {t.pricing.download}
+              {t?.pricing?.download || "تحميل الكتيب"}
             </h3>
 
             <p className="text-[#003B4A]/70 text-lg">
