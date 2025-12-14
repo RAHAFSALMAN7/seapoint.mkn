@@ -13,7 +13,6 @@ export default function Hero({ t, language, setLanguage }: HeroProps) {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-
       {/* زر تغيير اللغة */}
       <button
         onClick={() => setLanguage(language === "ar" ? "en" : "ar")}

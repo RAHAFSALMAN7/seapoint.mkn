@@ -1,4 +1,4 @@
- export const content = {
+export const content = {
   ar: {
     hero: {
       title: "سي بوينت — مفهوم جديد للحياة العصرية",
@@ -31,7 +31,7 @@
     },
 
     videoSection: {
-      video: "video.mp4",
+      video: "/video.mp4",
       title: "mkn_ksa",
       text: "كن أقرب ما يكون إلى البحر…",
       button: "سجّل اهتمامك الآن",
@@ -41,8 +41,8 @@
       title: "نظام المنزل الذكي",
       description: "حلول أتمتة حديثة",
       videos: [
-        { src: "zuccesshome.mp4", alt: "Smart Home Video 1" },
-        { src: "zuccesshomesystem.mp4", alt: "Smart Home Video 2" },
+        { src: "/zuccesshome.mp4", alt: "Smart Home Video 1" },
+        { src: "/zuccesshomesystem.mp4", alt: "Smart Home Video 2" },
       ],
     },
 
@@ -131,7 +131,7 @@
     },
 
     videoSection: {
-      video: "video.mp4",
+      video: "/video.mp4",
       title: "mkn_ksa",
       text: "Luxury living near the sea",
       button: "Register Now",
@@ -141,8 +141,8 @@
       title: "Smart Home",
       description: "Future living",
       videos: [
-        { src: "zuccesshome.mp4", alt: "Smart Home Video 1" },
-        { src: "zuccesshomesystem.mp4", alt: "Smart Home Video 2" },
+        { src: "/zuccesshome.mp4", alt: "Smart Home Video 1" },
+        { src: "/zuccesshomesystem.mp4", alt: "Smart Home Video 2" },
       ],
     },
 
