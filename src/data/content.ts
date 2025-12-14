@@ -53,6 +53,16 @@ export const content = {
         { title: "مساحات واسعة", description: "راحة استثنائية" },
       ],
     },
+pricing: {
+  title: "الأسعار والمساحات",
+  subtitle: "خيارات تناسب احتياجاتك",
+  labels: {
+    price: "السعر المبدئي",
+    area: "المساحة المبدئية",
+  },
+  download: "تحميل الكتيب",
+  brochure: "/brochure.pdf",
+},
 
     about: {
       title: "من نحن",
@@ -153,6 +163,16 @@ export const content = {
         { title: "Spacious", description: "Comfortable spaces" },
       ],
     },
+pricing: {
+  title: "Pricing & Areas",
+  subtitle: "Flexible options for you",
+  labels: {
+    price: "Starting Price",
+    area: "Starting Area",
+  },
+  download: "Download Brochure",
+  brochure: "/brochure.pdf",
+},
 
     about: {
       title: "About Us",
@@ -200,3 +220,4 @@ export const content = {
     },
   },
 };
+ 
