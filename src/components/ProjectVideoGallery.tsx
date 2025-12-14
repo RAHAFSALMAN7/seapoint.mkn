@@ -20,7 +20,6 @@ interface ProjectVideoGalleryProps {
 
 export default function ProjectVideoGallery({ t }: ProjectVideoGalleryProps) {
     const [current, setCurrent] = useState(0);
-
     const centerRef = useRef<HTMLVideoElement>(null);
 
     const [playing, setPlaying] = useState(true);
@@ -28,15 +27,12 @@ export default function ProjectVideoGallery({ t }: ProjectVideoGalleryProps) {
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
 
-    const prev = () => {
+    const prev = () =>
         setCurrent((p) => (p === 0 ? videos.length - 1 : p - 1));
-    };
 
-    const next = () => {
+    const next = () =>
         setCurrent((p) => (p === videos.length - 1 ? 0 : p + 1));
-    };
 
-    /* يشغل فقط الفيديو الوسطي */
     useEffect(() => {
         if (centerRef.current) {
             centerRef.current.currentTime = 0;
@@ -62,40 +58,39 @@ export default function ProjectVideoGallery({ t }: ProjectVideoGalleryProps) {
         (current + offset + videos.length) % videos.length;
 
     return (
-        <section className="py-32 bg-gradient-to-b from-[#003B4A] to-[#004B5A] overflow-hidden">
+        <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-[#003B4A] to-[#004B5A] overflow-hidden">
             <div className="max-w-7xl mx-auto px-4">
 
                 {/* TITLE */}
-                <div className="text-center mb-12">
-                    <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+                <div className="text-center mb-8 md:mb-12">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6">
                         {t.projectVideoGallery.title}
                     </h2>
-
-                    <p className="text-xl text-white/80">
+                    <p className="text-base sm:text-lg md:text-xl text-white/80">
                         {t.projectVideoGallery.subtitle}
                     </p>
                 </div>
 
                 {/* TEXT */}
-                <div className="max-w-4xl mx-auto text-center mb-20">
-                    <p className="text-xl md:text-2xl text-white/85 leading-relaxed">
+                <div className="max-w-4xl mx-auto text-center mb-12 md:mb-20">
+                    <p className="text-base sm:text-lg md:text-xl text-white/85 leading-relaxed">
                         {t.projectVideoGallery.text}
                     </p>
                 </div>
 
                 {/* SLIDER */}
-                <div className="relative flex items-center justify-center gap-12">
+                <div className="relative flex items-center justify-center gap-6 md:gap-12">
 
-                    {/* LEFT */}
+                    {/* LEFT – hidden on mobile */}
                     <video
                         src={`/${videos[getIndex(-1)]}`}
                         muted
                         playsInline
-                        className="w-[260px] h-[180px] object-cover rounded-3xl opacity-40 scale-90"
+                        className="hidden md:block w-[220px] lg:w-[260px] h-[150px] lg:h-[180px] object-cover rounded-3xl opacity-40 scale-90"
                     />
 
                     {/* CENTER */}
-                    <div className="relative scale-110 z-10">
+                    <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg scale-100 md:scale-110 z-10">
                         <video
                             ref={centerRef}
                             key={videos[current]}
@@ -112,7 +107,7 @@ export default function ProjectVideoGallery({ t }: ProjectVideoGalleryProps) {
                                 centerRef.current &&
                                 setDuration(centerRef.current.duration)
                             }
-                            className="w-[360px] h-[240px] object-cover rounded-3xl shadow-2xl"
+                            className="w-full aspect-video object-cover rounded-3xl shadow-2xl"
                         />
 
                         {/* CONTROLS */}
@@ -147,25 +142,25 @@ export default function ProjectVideoGallery({ t }: ProjectVideoGalleryProps) {
                         </div>
                     </div>
 
-                    {/* RIGHT */}
+                    {/* RIGHT – hidden on mobile */}
                     <video
                         src={`/${videos[getIndex(1)]}`}
                         muted
                         playsInline
-                        className="w-[260px] h-[180px] object-cover rounded-3xl opacity-40 scale-90"
+                        className="hidden md:block w-[220px] lg:w-[260px] h-[150px] lg:h-[180px] object-cover rounded-3xl opacity-40 scale-90"
                     />
 
                     {/* ARROWS */}
                     <button
                         onClick={prev}
-                        className="absolute left-0 md:left-10 w-12 h-12 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow-lg"
+                        className="absolute left-2 md:left-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow-lg"
                     >
                         <span className="text-2xl text-[#003B4A]">‹</span>
                     </button>
 
                     <button
                         onClick={next}
-                        className="absolute right-0 md:right-10 w-12 h-12 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow-lg"
+                        className="absolute right-2 md:right-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow-lg"
                     >
                         <span className="text-2xl text-[#003B4A]">›</span>
                     </button>

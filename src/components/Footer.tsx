@@ -6,99 +6,137 @@ interface FooterProps {
 
 export default function Footer({ t }: FooterProps) {
     return (
-        <footer className="bg-[#003B4A] text-white py-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <>
+            {/* PARTNERS SECTION */}
+            <section className="bg-white py-16">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                {/* TOP GRID */}
-                <div className="grid md:grid-cols-4 gap-12 mb-12">
+                    <h2 className="text-3xl font-bold text-center text-[#003B4A] mb-12">
+                        {t.partners.title}
+                    </h2>
 
-                    {/* LOGO + DESCRIPTION */}
-                    <div className="md:col-span-2">
-                        <img
-                            src="/Untitled-2.png"
-                            alt="Sea Point Logo"
-                            className="h-20 w-auto mb-6"
-                        />
-
-                        <p className="text-white/70 leading-relaxed text-lg mb-6">
-                            {t.footer.description}
-                        </p>
-
-                        <div className="flex gap-4">
-                            <div className="w-12 h-12 bg-[#D9C18E] rounded-full flex items-center justify-center hover:bg-[#c4a76d] transition-colors cursor-pointer">
-                                <span className="text-[#003B4A] font-bold">X</span>
-                            </div>
-
-                            <div className="w-12 h-12 bg-[#D9C18E] rounded-full flex items-center justify-center hover:bg-[#c4a76d] transition-colors cursor-pointer">
-                                <span className="text-[#003B4A] font-bold">IN</span>
-                            </div>
-
-                            <div className="w-12 h-12 bg-[#D9C18E] rounded-full flex items-center justify-center hover:bg-[#c4a76d] transition-colors cursor-pointer">
-                                <span className="text-[#003B4A] font-bold">IG</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* QUICK LINKS */}
-                    <div>
-                        <h3 className="text-2xl font-bold mb-6 text-[#D9C18E]">
-                            {t.footer.quickLinks}
-                        </h3>
-
-                        <div className="space-y-3">
-                            {t.footer.links.map((link: string, index: number) => (
-                                <a
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center">
+                        {t.partners.logos.map(
+                            (logo: { src: string; alt: string }, index: number) => (
+                                <div
                                     key={index}
-                                    href="#"
-                                    className="block text-white/70 hover:text-[#D9C18E] transition-colors text-lg"
+                                    className="flex items-center justify-center"
                                 >
-                                    {link}
-                                </a>
-                            ))}
-                        </div>
+                                    <img
+                                        src={logo.src}
+                                        alt={logo.alt}
+                                        className="h-16 object-contain grayscale hover:grayscale-0 transition duration-300"
+                                    />
+                                </div>
+                            )
+                        )}
                     </div>
 
-                    {/* CONTACT INFO */}
-                    <div>
-                        <h3 className="text-2xl font-bold mb-6 text-[#D9C18E]">
-                            {t.footer.contact}
-                        </h3>
+                </div>
+            </section>
 
-                        <div className="space-y-3 text-white/70 text-lg">
-                            <p>{t.footer.location}</p>
+            {/* FOOTER */}
+            <footer className="bg-[#003B4A] text-white py-16">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                            <p className="flex items-center gap-2">
-                                <Phone size={18} />
-                                +966 50 000 0000
+                    {/* TOP GRID */}
+                    <div className="grid md:grid-cols-4 gap-12 mb-12">
+
+                        {/* LOGO + DESCRIPTION */}
+                        <div className="md:col-span-2">
+                            <img
+                                src="/Untitled-2.png"
+                                alt="Sea Point Logo"
+                                className="h-20 w-auto mb-6"
+                            />
+
+                            <p className="text-white/70 leading-relaxed text-lg mb-6">
+                                {t.footer.description}
                             </p>
 
-                            <p>info@mkn-sa.net</p>
+                            <div className="flex gap-4">
+                                <div className="w-12 h-12 bg-[#D9C18E] rounded-full flex items-center justify-center hover:bg-[#c4a76d] transition-colors cursor-pointer">
+                                    <span className="text-[#003B4A] font-bold">X</span>
+                                </div>
+
+                                <div className="w-12 h-12 bg-[#D9C18E] rounded-full flex items-center justify-center hover:bg-[#c4a76d] transition-colors cursor-pointer">
+                                    <span className="text-[#003B4A] font-bold">IN</span>
+                                </div>
+
+                                <div className="w-12 h-12 bg-[#D9C18E] rounded-full flex items-center justify-center hover:bg-[#c4a76d] transition-colors cursor-pointer">
+                                    <span className="text-[#003B4A] font-bold">IG</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* QUICK LINKS */}
+                        <div>
+                            <h3 className="text-2xl font-bold mb-6 text-[#D9C18E]">
+                                {t.footer.quickLinks}
+                            </h3>
+
+                            <div className="space-y-3">
+                                {t.footer.links.map((link: string, index: number) => {
+                                    const isAbout =
+                                        link === "من نحن" || link === "About Us";
+
+                                    return (
+                                        <a
+                                            key={index}
+                                            href={isAbout ? "https://www.mkn-sa.net/" : "#"}
+                                            target={isAbout ? "_blank" : undefined}
+                                            rel={isAbout ? "noopener noreferrer" : undefined}
+                                            className="block text-white/70 hover:text-[#D9C18E] transition-colors text-lg"
+                                        >
+                                            {link}
+                                        </a>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        {/* CONTACT INFO */}
+                        <div>
+                            <h3 className="text-2xl font-bold mb-6 text-[#D9C18E]">
+                                {t.footer.contact}
+                            </h3>
+
+                            <div className="space-y-3 text-white/70 text-lg">
+                                <p>{t.footer.location}</p>
+
+                                <p className="flex items-center gap-2">
+                                    <Phone size={18} />
+                                    +966 50 000 0000
+                                </p>
+
+                                <p>info@mkn-sa.net</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {/* BOTTOM BAR */}
+                    <div className="border-t border-white/10 pt-8">
+                        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+
+                            <p className="text-white/50 text-center">
+                                {t.footer.copyright}
+                            </p>
+
+                            <div className="flex gap-6 text-white/50 text-sm">
+                                <a href="#" className="hover:text-[#D9C18E] transition-colors">
+                                    {t.footer.privacy}
+                                </a>
+                                <a href="#" className="hover:text-[#D9C18E] transition-colors">
+                                    {t.footer.terms}
+                                </a>
+                            </div>
+
                         </div>
                     </div>
 
                 </div>
-
-                {/* BOTTOM BAR */}
-                <div className="border-t border-white/10 pt-8">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-
-                        <p className="text-white/50 text-center">
-                            {t.footer.copyright}
-                        </p>
-
-                        <div className="flex gap-6 text-white/50 text-sm">
-                            <a href="#" className="hover:text-[#D9C18E] transition-colors">
-                                {t.footer.privacy}
-                            </a>
-                            <a href="#" className="hover:text-[#D9C18E] transition-colors">
-                                {t.footer.terms}
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </footer>
+            </footer>
+        </>
     );
 }

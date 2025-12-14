@@ -25,36 +25,29 @@ export default function Features({ t }: FeaturesProps) {
         {/* ICONS ROW */}
         <div className="grid md:grid-cols-3 gap-16 max-w-5xl mx-auto text-center">
 
-          {/* PRICES */}
+          {/* STARTING PRICE */}
           <div className="flex flex-col items-center">
-            <Home
-              size={56}
-              className="text-[#D9C18E] mb-6"
-            />
+            <Home size={56} className="text-[#D9C18E] mb-6" />
 
             <h3 className="text-2xl font-bold text-[#003B4A] mb-3">
               {t.pricing.labels.price}
             </h3>
 
             <p className="text-[#003B4A]/70 text-lg">
-              {t.pricing.items[0].price}
+              {t.projectIntro.startingPrice}
             </p>
           </div>
 
-          {/* AREAS */}
+          {/* STARTING AREA */}
           <div className="flex flex-col items-center">
-            <Ruler
-              size={56}
-              className="text-[#D9C18E] mb-6"
-            />
+            <Ruler size={56} className="text-[#D9C18E] mb-6" />
 
             <h3 className="text-2xl font-bold text-[#003B4A] mb-3">
               {t.pricing.labels.area}
             </h3>
 
             <p className="text-[#003B4A]/70 text-lg">
-              {t.pricing.items[0].area} –{" "}
-              {t.pricing.items[t.pricing.items.length - 1].area}
+              {t.projectIntro.startingArea}
             </p>
           </div>
 
